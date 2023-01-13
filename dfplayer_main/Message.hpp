@@ -1,10 +1,24 @@
 #pragma once
 
-typedef struct extends {
-    enum class Type {
-        Play,
-    } type;
+enum class DFPlayerType {
+    Play,
+    Volume,
+    VolumeUp,
+    VolumeDown,
+    Sleep,
+    Reset,
+    Next,
+    Previous,
+    Pause,
+    Start,
+};
+
+typedef struct {
     union {
-        int data;
+        DFPlayerType dfplayer_type;
+    };
+
+    union {
+        uint8_t data;
     };
 } Message;

@@ -35,7 +35,16 @@ DFPlayer::DFPlayer() {
 
 // メッセージを元に動作する関数
 void DFPlayer::update(const Message& msg) {
-    switch (msg.type) {
-        case Message::Type::Play : myDFPlayer->play(1); break;
+    switch (msg.dfplayer_type) {
+        case DFPlayerType::Play : myDFPlayer->play(1); break;
+        case DFPlayerType::Volume : myDFPlayer->volume(30); break;
+        case DFPlayerType::VolumeUp : myDFPlayer->volumeUp(); break;
+        case DFPlayerType::VolumeDown : myDFPlayer->volumeDown(); break;
+        case DFPlayerType::Sleep : myDFPlayer->sleep(); break;
+        case DFPlayerType::Reset : myDFPlayer->reset(); break;
+        case DFPlayerType::Next : myDFPlayer->next(); break;
+        case DFPlayerType::Previous : myDFPlayer->previous(); break;
+        case DFPlayerType::Pause : myDFPlayer->pause(); break;
+        case DFPlayerType::Start : myDFPlayer->start(); break;
     }
 }
