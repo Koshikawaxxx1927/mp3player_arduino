@@ -17,7 +17,6 @@ typedef struct {
     union {
         DFPlayerType dfplayer_type;
     };
-
     union {
         uint8_t data;
     };

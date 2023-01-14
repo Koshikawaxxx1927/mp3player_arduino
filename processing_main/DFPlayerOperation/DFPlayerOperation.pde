@@ -5,6 +5,9 @@ Vector origin; // ウィンドウ上の原点
 Vector screen_size; // ウィンドウの大きさ
 Vector center; // ウィンドウの中点
 
+// DF Playerから読み取ったメッセージを保存する
+DFPlayerMessage msg;
+
 // 再生アイコンを作るための頂点
 Vector play_triangle1;
 Vector play_triangle2;
@@ -22,6 +25,9 @@ void setup() {
     bar_height = 120; // 画像下のバーの高さ
     play_icon_length = 50; // 再生アイコンの長さ
     
+    // Arduinoからのメッセージを保存する
+    msg = new DFPlayerMessage();
+    
     background(255); // 背景を黒にする
     // Arduinoへのシリアルポートの設定
     String arduinoPort = Serial.list()[2];
@@ -33,7 +39,7 @@ void setup() {
     // 再生ボタンの描写
     strokeWeight(3);
     fill(255);
-    circle(center.x(), center.y(), 2 * play_icon_length);
+    circle(center.x(), center.y(), 2 * play_icon_length); //<>//
     draw_stop_button(new Vector(center.x(), int(screen_size.subtract(bar_height / 2).y())), play_icon_length);
 
     // 画像の描写
@@ -43,8 +49,21 @@ void setup() {
     draw_next_button(center, play_icon_length, true);
     // 曲のスキップボタン(前の曲)の描写
     draw_next_button(center, play_icon_length, false);
+    
+    // ボリュームバーを描写
+    fill(255);
+    strokeWeight(0);
+    rect(center.x() + 250,
+         int(screen_size.subtract(bar_height / 2).y()) - 10,
+         200, 25);
+    strokeWeight(3);
+    read_update_msg();
+    draw_volume_bar(msg.data);
 }
 
 void draw() {
-
+    read_update_msg(); //<>//
+    //if (msg.type == DFPlayerType.Volume) { //<>//
+    //    draw_volume_bar(msg.data); //<>//
+    //}
 }

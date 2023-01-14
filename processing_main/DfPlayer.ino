@@ -30,14 +30,17 @@ DFPlayer::DFPlayer() {
     Serial.println(F("DFPlayer Mini online."));
       
     // ボリュームの初期値をセット(0~30);
-    myDFPlayer->volume(25);
+    int init_volume = 5;
+    myDFPlayer->volume(init_volume);
+    Serial.write(DFPlayerType::Volume);
+    Serial.write(init_volume);
 }
 
 // メッセージを元に動作する関数
 void DFPlayer::update(const Message& msg) {
     switch (msg.dfplayer_type) {
         case DFPlayerType::Play : myDFPlayer->play(1); break;
-        case DFPlayerType::Volume : myDFPlayer->volume(30); break;
+        case DFPlayerType::Volume : myDFPlayer->volume(msg.data); break;
         case DFPlayerType::VolumeUp : myDFPlayer->volumeUp(); break;
         case DFPlayerType::VolumeDown : myDFPlayer->volumeDown(); break;
         case DFPlayerType::Sleep : myDFPlayer->sleep(); break;

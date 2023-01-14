@@ -1,0 +1,11 @@
+public enum DFPlayerMessage {
+  Play,
+    Volume,
+    VolumeUp,
+    VolumeDown,
+    Sleep,
+    Reset,
+    Next,
+    Previous,
+    Pause,
+    Start,

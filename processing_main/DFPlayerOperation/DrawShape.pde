@@ -62,3 +62,50 @@ void draw_next_button(Vector center, int length, boolean is_next) {
             5, 2.0 * bar_adjust * play_icon_length * sin(radians(45)));
     }
 }
+
+void draw_volume_bar(int volume) {
+    // 音声バーの描写
+    // 古いボリュームバーを塗りつぶす
+    fill(255);
+    strokeWeight(0);
+    rect(center.x() + 250,
+            int(screen_size.subtract(bar_height / 2).y()) - 10,
+            200, 25);
+    strokeWeight(3);
+    // 新しいボリュームバーを描写
+    fill(0);
+    int volume_bar_height = 5;
+    int volume_bar_width = 200;
+    int volume_level = 200 / 30;
+    rect(center.x() + 250,
+         int(screen_size.subtract(bar_height / 2).y()),
+         volume_bar_width,
+         volume_bar_height);
+    rect(center.x() + 250,
+         int(screen_size.subtract(bar_height / 2).y()) - 10,
+         1,
+         25);
+    rect(center.x() + 250 + volume_bar_width,
+         int(screen_size.subtract(bar_height / 2).y()) - 10,
+         1,
+         25);
+    fill(255);
+    circle(10 + center.x() + 250 + volume_level * volume,
+           int(screen_size.subtract(bar_height / 2).y()) + volume_bar_height / 2,
+           20);
+    fill(0);
+    rect(center.x() + 190,
+         int(screen_size.subtract(bar_height / 2).y()),
+         10, 10);
+    draw_triangle(new Vector(center.x() + 200,
+                  int(screen_size.subtract(bar_height / 2).y()) + 5),
+                  15,
+                  false);
+    // 音声マーク
+    rect(center.x() + 217,
+         int(screen_size.subtract(bar_height / 2).y() - volume_bar_height),
+         2, 20);
+    rect(center.x() + 225,
+         int(screen_size.subtract(bar_height / 2).y() - volume_bar_height - 3),
+         2, 26);
+}
