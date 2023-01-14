@@ -1,6 +1,6 @@
 #pragma once
 
-enum class DFPlayerType {
+enum DFPlayerType {
     Play,
     Volume,
     VolumeUp,

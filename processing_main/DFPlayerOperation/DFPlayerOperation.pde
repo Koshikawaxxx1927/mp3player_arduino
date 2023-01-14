@@ -24,7 +24,8 @@ void setup() {
     
     background(255); // 背景を黒にする
     // Arduinoへのシリアルポートの設定
-    dfplayer_port = new Serial(this, Serial.list()[2], 9600);
+    String arduinoPort = Serial.list()[2];
+    dfplayer_port = new Serial(this, arduinoPort, 9600);
 
     // 背景画像の読み取り
     img = loadImage("../../images/main.png");
@@ -45,5 +46,5 @@ void setup() {
 }
 
 void draw() {
-    
+
 }
