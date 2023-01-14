@@ -63,3 +63,19 @@ void mouseMoved() {
         cursor(ARROW);
     }
 }
+
+void mouseDragged() {
+    if (center.x() + 260 <= mouseX && mouseX <= center.x() + 440) {
+        // 音量調整バーのドラッグ
+        if (int(screen_size.subtract(bar_height / 2).y()) - 15 <= mouseY && mouseY <= int(screen_size.subtract(bar_height / 2).y()) + 15) {
+            int volume = (mouseX - center.x() - 260) / (200 / 30); // 座標をボリュームに変換する
+            // ボリュームバーを描写
+            draw_volume_bar(volume);
+            // Arduinoへのシリアルポートを送信(再生)
+            // ArduinoプログラムではVolume
+            dfplayer_port.write(DFPlayerType.Volume.ordinal());
+            // ボリュームをシリアルポートで送信
+            dfplayer_port.write(volume);
+        }
+    }
+}

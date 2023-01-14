@@ -30,7 +30,7 @@ DFPlayer::DFPlayer() {
     Serial.println(F("DFPlayer Mini online."));
       
     // ボリュームの初期値をセット(0~30);
-    int init_volume = 5;
+    int init_volume = 15;
     myDFPlayer->volume(init_volume);
     Serial.write(DFPlayerType::Volume);
     Serial.write(init_volume);
