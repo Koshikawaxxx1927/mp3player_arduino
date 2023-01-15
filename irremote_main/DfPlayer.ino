@@ -38,26 +38,29 @@ DFPlayer::DFPlayer() {
 
 // メッセージを元に動作する関数
 void DFPlayer::update(Message& msg) {
-    switch (msg.dfplayer_type) {
-        case DFPlayerType::Play : myDFPlayer->playMp3Folder(msg.mp3); break;
-        case DFPlayerType::Volume : myDFPlayer->volume(msg.volume); break;
-        case DFPlayerType::VolumeUp : myDFPlayer->volumeUp(); break;
-        case DFPlayerType::VolumeDown : myDFPlayer->volumeDown(); break;
-        case DFPlayerType::Sleep : myDFPlayer->sleep(); break;
-        case DFPlayerType::Reset : myDFPlayer->reset(); break;
-        case DFPlayerType::Next : {
-          msg.mp3 ++;
-          if (msg.mp3 > mp3_num) msg.mp3 = 1;
-          myDFPlayer->playMp3Folder(msg.mp3);
-          break;
+    if (msg.is_changed) {
+        switch (msg.dfplayer_type) {
+            case DFPlayerType::Play : myDFPlayer->playMp3Folder(msg.mp3); break;
+            case DFPlayerType::Volume : myDFPlayer->volume(msg.volume); break;
+            case DFPlayerType::VolumeUp : myDFPlayer->volumeUp(); break;
+            case DFPlayerType::VolumeDown : myDFPlayer->volumeDown(); break;
+            case DFPlayerType::Sleep : myDFPlayer->sleep(); break;
+            case DFPlayerType::Reset : myDFPlayer->reset(); break;
+            case DFPlayerType::Next : {
+              // msg.mp3 ++;
+              // if (msg.mp3 > mp3_num) msg.mp3 = 1;
+              myDFPlayer->playMp3Folder(msg.mp3);
+              break;
+            }
+            case DFPlayerType::Previous : {
+              // msg.mp3 --;
+              // if (msg.mp3 < 1) msg.mp3 = mp3_num;
+              myDFPlayer->playMp3Folder(msg.mp3);
+              break;
+            }
+            case DFPlayerType::Pause : myDFPlayer->pause(); break;
+            case DFPlayerType::Start : myDFPlayer->start(); break;
         }
-        case DFPlayerType::Previous : {
-          msg.mp3 --;
-          if (msg.mp3 < 1) msg.mp3 = mp3_num;
-          myDFPlayer->playMp3Folder(msg.mp3);
-          break;
-        }
-        case DFPlayerType::Pause : myDFPlayer->pause(); break;
-        case DFPlayerType::Start : myDFPlayer->start(); break;
-    } 
+        msg.is_changed = true;
+    }
 }

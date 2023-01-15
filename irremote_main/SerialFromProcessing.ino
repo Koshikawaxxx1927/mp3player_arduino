@@ -5,6 +5,10 @@ void read_update_msg(Message& msg) {
         uint8_t data = Serial.read();
         __serial::update_msg(msg, data);
     }
+    if (msg.is_changed) {
+        myDFPlayer->update(msg);
+        msg.is_changed = false;
+    }
 }
 
 void __serial::update_msg(Message &msg, uint8_t data) {
@@ -26,4 +30,5 @@ void __serial::update_msg(Message &msg, uint8_t data) {
         case Pause : msg.dfplayer_type = DFPlayerType::Pause; break;
         case Start : msg.dfplayer_type = DFPlayerType::Start; break;
     }
+    msg.is_changed = true;
 }
