@@ -12,8 +12,8 @@ void setup() {
 }
 
 void loop() {
-    msg.dfplayer_type = DFPlayerType::VolumeDown;
-    msg.data = 1;
+    // msg.dfplayer_type = DFPlayerType::Volume;
+    // msg.data = 29;
     // myDFPlayer->update(msg);
     delay(1000);
 }

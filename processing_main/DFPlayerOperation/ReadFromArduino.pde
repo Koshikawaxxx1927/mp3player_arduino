@@ -1,6 +1,8 @@
 void read_update_msg() {
     if (dfplayer_port.available() > 0) {
         update_msg();
+        //　msg変数が更新された時にウィンドウ上の見た目に反映させる
+        screen_view.update(msg);
     }
 }
 

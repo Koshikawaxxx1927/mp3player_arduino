@@ -1,4 +1,6 @@
 boolean is_playing = true;
+boolean is_volume = true;
+int pre_volume; // 消音にしたときに前の音量を保存しておく
 
 void mouseClicked() {
     // クリックされた時の処理
@@ -10,7 +12,7 @@ void mouseClicked() {
             is_playing = false;
             // Arduinoへのシリアルポートを送信(停止)
             // ArduinoプログラムではPauseとなる
-            dfplayer_port.write(DFPlayerType.Pause.ordinal());
+            dfplayer_port.write(DFPlayerType.Pause.ordinal()); //<>//
         } else {
             // 再生する //<>// //<>//
             draw_stop_button(new Vector(center.x(), int(screen_size.subtract(bar_height / 2).y())), play_icon_length);
@@ -20,7 +22,7 @@ void mouseClicked() {
             dfplayer_port.write(DFPlayerType.Start.ordinal());
         }
     } else if (center.x() + 260 <= mouseX && mouseX <= center.x() + 440) {
-        // 音量調整バーのポインター変化
+        // 音量調整バー
         if (int(screen_size.subtract(bar_height / 2).y()) - 15 <= mouseY && mouseY <= int(screen_size.subtract(bar_height / 2).y()) + 15) {
             int volume = (mouseX - center.x() - 260) / (200 / 30); // 座標をボリュームに変換する
             // ボリュームバーを描写

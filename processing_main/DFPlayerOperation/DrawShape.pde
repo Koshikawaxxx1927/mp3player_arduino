@@ -93,6 +93,8 @@ void draw_volume_bar(int volume) {
     circle(10 + center.x() + 250 + volume_level * volume,
            int(screen_size.subtract(bar_height / 2).y()) + volume_bar_height / 2,
            20);
+           
+    // 音声マーク
     fill(0);
     rect(center.x() + 190,
          int(screen_size.subtract(bar_height / 2).y()),
@@ -101,7 +103,7 @@ void draw_volume_bar(int volume) {
                   int(screen_size.subtract(bar_height / 2).y()) + 5),
                   15,
                   false);
-    // 音声マーク
+    // 音声マークから出る音の描写
     rect(center.x() + 217,
          int(screen_size.subtract(bar_height / 2).y() - volume_bar_height),
          2, 20);
