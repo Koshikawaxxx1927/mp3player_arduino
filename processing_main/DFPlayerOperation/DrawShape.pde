@@ -108,6 +108,6 @@ void draw_volume_bar(int volume) {
          int(screen_size.subtract(bar_height / 2).y() - volume_bar_height),
          2, 20);
     rect(center.x() + 225,
-         int(screen_size.subtract(bar_height / 2).y() - volume_bar_height - 3),
+         it ),
          2, 26);
 }
