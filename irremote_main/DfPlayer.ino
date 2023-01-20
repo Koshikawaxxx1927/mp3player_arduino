@@ -47,20 +47,21 @@ void DFPlayer::update(Message& msg) {
             case DFPlayerType::Sleep : myDFPlayer->sleep(); break;
             case DFPlayerType::Reset : myDFPlayer->reset(); break;
             case DFPlayerType::Next : {
-              // msg.mp3 ++;
-              // if (msg.mp3 > mp3_num) msg.mp3 = 1;
+              msg.mp3 ++;
+              if (msg.mp3 > mp3_num) msg.mp3 = 1;
               myDFPlayer->playMp3Folder(msg.mp3);
               break;
             }
             case DFPlayerType::Previous : {
-              // msg.mp3 --;
-              // if (msg.mp3 < 1) msg.mp3 = mp3_num;
+              msg.mp3 --;
+              if (msg.mp3 < 1) msg.mp3 = mp3_num;
               myDFPlayer->playMp3Folder(msg.mp3);
               break;
             }
             case DFPlayerType::Pause : myDFPlayer->pause(); break;
             case DFPlayerType::Start : myDFPlayer->start(); break;
+            case DFPlayerType::Loop : myDFPlayer->enableLoopAll(); break;
         }
-        msg.is_changed = true;
+        msg.is_changed = false;
     }
 }

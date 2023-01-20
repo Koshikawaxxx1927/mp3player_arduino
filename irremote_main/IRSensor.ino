@@ -61,8 +61,8 @@ void IRSensor::update(Message& msg) {
                 // 次の曲を流す
                 msg.is_changed = true;
                 msg.dfplayer_type = DFPlayerType::Next;
-                msg.mp3 ++;
-                if (msg.mp3 > mp3_num) msg.mp3 = 1;
+                // msg.mp3 ++;
+                // if (msg.mp3 > mp3_num) msg.mp3 = 1;
                 myDFPlayer->update(msg);
                 Serial.println(msg.mp3);
                 break;
@@ -71,8 +71,8 @@ void IRSensor::update(Message& msg) {
                 // 前の曲を流す
                 msg.is_changed = true;
                 msg.dfplayer_type = DFPlayerType::Previous;
-                msg.mp3 --;
-                if (msg.mp3 < 1) msg.mp3 = mp3_num;
+                // msg.mp3 --;
+                // if (msg.mp3 < 1) msg.mp3 = mp3_num;
                 myDFPlayer->update(msg);
                 break;
             }

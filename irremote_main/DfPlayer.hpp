@@ -13,6 +13,8 @@ public:
     // デストラクタ
     virtual ~DFPlayer() = default;
 
+    class DFRobotDFPlayerMini* get() const { return myDFPlayer; }
+
     // メッセージを元に動作する関数
     void update(Message& msg) override;
 private:

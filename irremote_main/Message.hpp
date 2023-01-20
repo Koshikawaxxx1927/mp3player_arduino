@@ -11,6 +11,7 @@ enum DFPlayerType {
     Previous,
     Pause,
     Start,
+    Loop,
 };
 
 typedef struct {
