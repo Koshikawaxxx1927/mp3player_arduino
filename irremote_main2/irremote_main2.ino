@@ -30,8 +30,11 @@ void setup() {
 }
 
 void loop() {
+  // Processingからの読み取りとmsgの更新
   read_update_msg(msg);
+  // 赤外線センサからの読み取りとmsgの更新
   ir_remote->update(msg);
+  // 更新されたmsgをもとにDFPlayer miniを動作させる
   myDFPlayer->update(msg);
   led_light(msg); // LEDを光らせる
 }

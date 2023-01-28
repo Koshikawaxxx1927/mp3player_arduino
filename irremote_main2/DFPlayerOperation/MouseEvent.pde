@@ -21,6 +21,16 @@ void mouseClicked() {
             // ArduinoプログラムではStart
             dfplayer_port.write(DFPlayerType.Start.ordinal());
         }
+    } else if (center.x() + 75 < mouseX && mouseX < center.x() + 115 + 5) {
+        // スキップボタンクリック時のArduinoへのシリアル転送
+        // Arduinoへのシリアルポートを送信(次の曲へ)
+        // ArduinoプログラムではNext
+        dfplayer_port.write(DFPlayerType.Next.ordinal());
+    } else if (center.x() - 115 - 5 < mouseX && mouseX < center.x() - 75) {
+        // スキップボタンクリック時のArduinoへのシリアル転送
+        // Arduinoへのシリアルポートを送信(前の曲へ)
+        // ArduinoプログラムではPrevious
+        dfplayer_port.write(DFPlayerType.Previous.ordinal());
     } else if (center.x() + 260 <= mouseX && mouseX <= center.x() + 440) {
         // 音量調整バー
         if (int(screen_size.subtract(bar_height / 2).y()) - 15 <= mouseY && mouseY <= int(screen_size.subtract(bar_height / 2).y()) + 15) {
@@ -30,6 +40,7 @@ void mouseClicked() {
             // Arduinoへのシリアルポートを送信(再生)
             // ArduinoプログラムではVolume
             dfplayer_port.write(DFPlayerType.Volume.ordinal());
+            delay(100);
             // ボリュームをシリアルポートで送信
             dfplayer_port.write(volume);
         }
@@ -76,6 +87,7 @@ void mouseDragged() {
             // Arduinoへのシリアルポートを送信(再生)
             // ArduinoプログラムではVolume
             dfplayer_port.write(DFPlayerType.Volume.ordinal());
+            delay(100);
             // ボリュームをシリアルポートで送信
             dfplayer_port.write(volume);
         }

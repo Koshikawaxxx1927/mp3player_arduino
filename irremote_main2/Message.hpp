@@ -11,13 +11,18 @@ enum DFPlayerType {
     Previous,
     Pause,
     Start,
+    Loop,
 };
 
 typedef struct {
+    bool is_changed; // メッセージの内容が書き換えられたらtrueになる
     union {
         DFPlayerType dfplayer_type;
     };
     union {
-        uint8_t data;
+        struct {
+            uint8_t mp3;
+            uint8_t volume;
+        };
     };
 } Message;

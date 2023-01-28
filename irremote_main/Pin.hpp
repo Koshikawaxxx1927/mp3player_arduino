@@ -16,4 +16,7 @@ namespace pin {
 
     // 赤外線受信モジュール接続ピン
     constexpr uint8_t ir_remote = 11;
+
+    // 再生初期化(割り込み)
+    constexpr uint8_t replay = 0;
 };

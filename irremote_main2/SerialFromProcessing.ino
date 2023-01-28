@@ -4,7 +4,6 @@ void read_update_msg(Message& msg) {
     if (Serial.available() > 0) {
         uint8_t data = Serial.read();
         __serial::update_msg(msg, data);
-        myDFPlayer->update(msg);
     }
 }
 
@@ -15,7 +14,7 @@ void __serial::update_msg(Message &msg, uint8_t data) {
             msg.dfplayer_type = DFPlayerType::Volume;
             do {
             } while (Serial.available() == 0);
-            msg.data = Serial.read();
+            msg.volume = Serial.read();
             break;
         }
         case VolumeUp : msg.dfplayer_type = DFPlayerType::VolumeUp; break;
@@ -27,4 +26,5 @@ void __serial::update_msg(Message &msg, uint8_t data) {
         case Pause : msg.dfplayer_type = DFPlayerType::Pause; break;
         case Start : msg.dfplayer_type = DFPlayerType::Start; break;
     }
+    msg.is_changed = true;
 }

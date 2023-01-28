@@ -28,18 +28,7 @@ public class View {
 
     public void update(DFPlayerMessage msg) {
         switch (msg.type) {
-            case Play : {
-                if (is_playing) {
-                    // 停止する
-                    draw_play_button(new Vector(center.x(), int(screen_size.subtract(bar_height / 2).y())), play_icon_length);
-                    is_playing = false;
-                } else {
-                    // 再生する //<>// //<>//
-                    draw_stop_button(new Vector(center.x(), int(screen_size.subtract(bar_height / 2).y())), play_icon_length);
-                    is_playing = true;
-                }
-                break;
-            }
+            case Play : break;
             case Volume : draw_volume_bar(msg.data); break;
             case VolumeUp : draw_volume_bar(msg.data); break;
             case VolumeDown : draw_volume_bar(msg.data); break;
@@ -47,8 +36,18 @@ public class View {
             case Reset :  break;
             case Next :  break;
             case Previous :  break;
-            case Pause :  break;
-            case Start :  break;
+            case Pause : {
+                is_playing = false;
+                // 停止する
+                draw_play_button(new Vector(center.x(), int(screen_size.subtract(bar_height / 2).y())), play_icon_length);
+                break;
+            }
+            case Start : {
+                is_playing = true;
+                // 再生する
+                draw_stop_button(new Vector(center.x(), int(screen_size.subtract(bar_height / 2).y())), play_icon_length);
+                break;
+            }
         }
     }
 }
